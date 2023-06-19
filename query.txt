@@ -17,6 +17,11 @@ SELECT *
 FROM `students`
 WHERE `date_of_birth` <= '1992-06-16';
 
+Soluzione alternativa (calcola la differenza in anni tra "data di nascita" e "data odierna" e controlla che sia > 30):
+SELECT *
+FROM `students`
+WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURDATE()) > 30;
+
 
 4. Selezionare tutti i corsi del primo semestre del primo anno di un qualsiasi corso di laurea (286):
 SELECT * 
@@ -45,4 +50,12 @@ FROM `departments`;
 8. Quanti sono gli insegnanti che non hanno un numero di telefono? (50):
 SELECT COUNT(*) AS 'teachers_no_phone' 
 FROM `teachers`
-WHERE `phone` is NOT NULL;
+WHERE `phone` IS NULL;
+
+Soluzione alternativa (il totale - gli insegnanti che hanno il campo "phone" compilato):
+SELECT COUNT(*) - COUNT(`phone`) AS 'teachers_no_phone'
+FROM `teachers`;
+
+Soluzione alternativa per calcolare quanti insegnanti hanno un numero di telefono (contando quante celle del dato `phone` hanno un valore al suo interno):
+SELECT COUNT(`phone`) AS 'teachers_no_phone' 
+FROM `teachers`;
