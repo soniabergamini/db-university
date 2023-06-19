@@ -1,4 +1,4 @@
-ESERCIZIO:
+ESERCIZIO 'GROUP BY':
 
 1. Contare quanti iscritti ci sono stati ogni anno
 SELECT YEAR(`enrolment_date`) AS `year`, COUNT(*) AS `students`
